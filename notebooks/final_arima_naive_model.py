@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Aug 31 22:56:27 2020
-
 @authors: anbarry, Eddie Kunkel
 """
 
@@ -12,6 +10,8 @@ from statsmodels.tsa.arima.model import ARIMA
 from datetime import datetime
 from itertools import product
 from pdb import set_trace
+import warnings
+warnings.filterwarnings('ignore')
 
 PRINT_VERBOSE = False
 
@@ -215,5 +215,8 @@ predictions = pd.concat(predictions_df_list)
 predictions['year'] = predictions.index.year
 predictions['month'] = predictions.index.month
 predictions = predictions[['year','month','site_code','product_code','predicted_value']]
-predictions.to_csv('../predictions/predictions.csv', index=False)
-set_trace()
+
+if USE_NAIVE_ONLY:
+    predictions.to_csv('../predictions/NAIVE_predictions.csv', index=False)  
+else:
+    predictions.to_csv('../predictions/COMBINED_predictions.csv', index=False)

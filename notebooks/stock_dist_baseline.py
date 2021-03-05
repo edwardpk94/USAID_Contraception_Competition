@@ -50,6 +50,7 @@ test = logistics_data.loc[(logistics_data.year == train_test_year) & (logistics_
 
 # Group by site code and product code to get the average of stock dist for the last three months
 train_avg_baseline = train.groupby(['site_code', 'product_code'])['stock_distributed'].mean().reset_index()
+set_trace()
 train_avg_baseline.rename(columns={'stock_distributed': 'pred_stock_distributed'}, inplace=True)
 
 set_trace()
